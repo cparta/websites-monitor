@@ -27,7 +27,9 @@ def check_cookie_policy(website):
         # Method 1: Direct page analysis for cookie policy
         response = requests.get(website, headers=headers, timeout=10)
         response.raise_for_status()
-
+        if not response.cookies:
+            print(f"No cookies found for {website}.")
+            return "🟢"  # No cookies means no need for cookie-policy
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Common keywords associated with cookie policies
