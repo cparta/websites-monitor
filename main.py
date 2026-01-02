@@ -236,7 +236,7 @@ def generate_report(config: Config, check_results: List[Tuple[str, List[str]]]):
         report_template = f.read()
         
     # Initialize the report content
-    report_content = f"""{usage_content}
+    report_content = f"""{report_template}
 
 {report_template}
 
