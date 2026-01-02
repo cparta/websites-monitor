@@ -1,6 +1,6 @@
 import whois
 import logging
-from whois.parser import PywhoisError
+from whois.exceptions import PywhoisError
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
