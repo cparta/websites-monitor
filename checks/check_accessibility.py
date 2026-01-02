@@ -7,13 +7,14 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def check_accessibility(website):
+def check_accessibility(website: str, api_key: str = None):
     """
     Check the website's accessibility score using Lighthouse or similar services.
     
     Args:
     - website (str): URL of the website to be checked.
-    
+    - api_key (str, optional): The Google PageSpeed Insights API key. Defaults to None.
+
     Returns:
     - str: "🟢" if the accessibility score is high (0.9 to 1),
            "🟠" if the score is moderate (0.8 to 0.9),
@@ -24,7 +25,9 @@ def check_accessibility(website):
     if not website or not isinstance(website, str):
         logger.error(f"Invalid website input: {website}")
         return "⚪"
-    
+    if not api_key:
+        logger.error("No API key provided for PageSpeed check.")
+        return "⚪"
     website = website.strip()
     if not website.startswith(('http://', 'https://')):
         website = f"https://{website}"
@@ -50,6 +53,7 @@ def check_accessibility(website):
 
     lighthouse_params = {
         "url": website,
+        'key': api_key,
         "category": "accessibility",
         "strategy": "desktop"
     }
