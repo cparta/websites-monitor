@@ -42,7 +42,6 @@ from checks.check_floc import check_floc
 from checks.check_hsts import check_hsts
 from checks.check_internationalization import check_internationalization
 from checks.check_mixed_content import check_mixed_content
-from checks.check_mobile_friendly import check_mobile_friendly
 from checks.check_open_graph_protocol import check_open_graph_protocol
 from checks.check_pagespeed_performances import check_pagespeed_performances
 from checks.check_privacy_exposure import check_privacy_exposure
@@ -185,9 +184,8 @@ class WebsiteMonitor:
             self.Check("Third-Party Requests", check_third_party_requests),
             self.Check("Third-Party Resources", check_third_party_resources),
             
-            # Accessibility & Mobile (5)
+            # Accessibility & Mobile (4)
             self.Check("Accessibility", check_accessibility),
-            self.Check("Mobile Friendly", check_mobile_friendly),
             self.Check("AMP Compatibility", check_amp_compatibility),
             self.Check("Internationalization", check_internationalization),
             self.Check("Browser Compatibility", check_browser_compatibility),
