@@ -28,7 +28,6 @@ from checks.check_cookie_flags import check_cookie_flags
 from checks.check_cookie_policy import check_cookie_policy
 from checks.check_cookie_samesite_attribute import check_cookie_samesite_attribute
 from checks.check_cors_headers import check_cors_headers
-from checks.check_data_leakage import check_data_leakage
 from checks.check_deprecated_libraries import check_deprecated_libraries
 from checks.check_dns_blacklist import check_dns_blacklist
 from checks.check_dnssec import check_dnssec
@@ -140,7 +139,6 @@ class WebsiteMonitor:
             self.Check("Mixed Content", check_mixed_content),
             self.Check("Subresource Integrity", check_subresource_integrity),
             self.Check("Rate Limiting", check_rate_limiting),
-            self.Check("Data Leakage", check_data_leakage),
             
             # Performance & Speed (8)
             self.Check("Pagespeed", check_pagespeed_performances, timeout=60),
