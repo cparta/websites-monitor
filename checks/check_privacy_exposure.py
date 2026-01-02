@@ -34,8 +34,6 @@ def check_privacy_exposure(website: str) -> str:
 
     # Enhanced patterns to detect sensitive data exposure
     sensitive_data_patterns = [
-        r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b',  # Email addresses
-        r'\b\d{10,11}\b',  # Phone numbers (10-11 digits)
         r'(\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b)',  # Credit Card numbers
         r'(\b\d{3}[- ]?\d{2}[- ]?\d{4}\b)',  # Social Security Numbers
         r'("AWS_ACCESS_KEY_ID"|"aws_secret_access_key"|"AKIA[0-9A-Z]{16}")',  # AWS Access Keys
