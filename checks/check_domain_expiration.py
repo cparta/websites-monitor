@@ -59,7 +59,7 @@ def check_domain_expiration(domain: str) -> str:
                 except ValueError:
                     return None
         
-        return (exp_date - datetime.now()).days
+        return (exp_date - datetime.now(datetime.timezone.utc)).days
 
     try:
         # Fetch WHOIS data for the domain with timeout
