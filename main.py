@@ -4,6 +4,7 @@ import logging
 from typing import List, Tuple, Callable, Optional
 import sys
 import asyncio
+import inspect
 import yaml
 from dataclasses import dataclass
 import os
@@ -110,13 +111,13 @@ class WebsiteMonitor:
         async def execute(self, website: str, config: Config, default_timeout: int) -> str:
             """Execute the check with timeout handling."""
             try:
-                if self.name == "Pagespeed" and asyncio.iscoroutinefunction(self.function):
+                if self.name == "Pagespeed" and inspect.iscoroutinefunction(self.function):
                   return await asyncio.wait_for(self.function(f"https://{website}", api_key=config.pagespeed_api_key), self.timeout or default_timeout)
                 elif self.name == "Pagespeed":
                   return self.function(f"https://{website}", api_key=config.pagespeed_api_key)
                 elif self.name == "Rate Limiting":
                    return self.function(f"https://{website}")
-                elif asyncio.iscoroutinefunction(self.function):
+                elif inspect.iscoroutinefunction(self.function):
                   return await asyncio.wait_for(self.function(website), self.timeout or default_timeout)
                 else:
                    return self.function(website)
