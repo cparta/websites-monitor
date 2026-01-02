@@ -294,6 +294,13 @@ def load_config(config_file: str = 'config.yaml') -> Config:
         api_key = os.environ.get('PAGESPEED_API_KEY')
         if api_key:
             config_data['pagespeed_api_key'] = api_key
+            logger.info("Pagespeed api key configured.")
+        for key, value in config_data.items():
+            if isinstance(value, (list, tuple)):
+                joined = " ".join(str(v) for v in value)
+                logger.info("%s -> %s", key, joined)
+            else:
+                logger.info("%s -> %s", key, value)
         return Config.from_dict(config_data)
     except FileNotFoundError:
         logger.warning("Config file not found. Falling back to default configuration.")
