@@ -3,6 +3,7 @@ import whois
 import logging
 import re
 from urllib.parse import urlparse
+from whois.exceptions import PywhoisError
 
 logger = logging.getLogger(__name__)
 
@@ -103,7 +104,7 @@ def check_domain_expiration(domain: str) -> str:
             logger.info(f"Domain {domain} expires in {days_to_expire} days - safe")
             return f"🟢 ({days_to_expire} days left)"
             
-    except whois.parser.PywhoisError as e:
+    except whois.PywhoisError as e:
         logger.error(f"WHOIS parsing error for {domain}: {e}")
         return "⚪"
     except Exception as e:
